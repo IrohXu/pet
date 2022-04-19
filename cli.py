@@ -131,15 +131,15 @@ def main():
     parser.add_argument("--pet_max_seq_length", default=256, type=int,
                         help="The maximum total input sequence length after tokenization for PET. Sequences longer "
                              "than this will be truncated, sequences shorter will be padded.")
-    parser.add_argument("--pet_per_gpu_train_batch_size", default=4, type=int,
+    parser.add_argument("--pet_per_gpu_train_batch_size", default=128, type=int,
                         help="Batch size per GPU/CPU for PET training.")
-    parser.add_argument("--pet_per_gpu_eval_batch_size", default=8, type=int,
+    parser.add_argument("--pet_per_gpu_eval_batch_size", default=256, type=int,
                         help="Batch size per GPU/CPU for PET evaluation.")
-    parser.add_argument("--pet_per_gpu_unlabeled_batch_size", default=4, type=int,
+    parser.add_argument("--pet_per_gpu_unlabeled_batch_size", default=128, type=int,
                         help="Batch size per GPU/CPU for auxiliary language modeling examples in PET.")
     parser.add_argument('--pet_gradient_accumulation_steps', type=int, default=1,
                         help="Number of updates steps to accumulate before performing a backward/update pass in PET.")
-    parser.add_argument("--pet_num_train_epochs", default=3, type=float,
+    parser.add_argument("--pet_num_train_epochs", default=1, type=float,
                         help="Total number of training epochs to perform in PET.")
     parser.add_argument("--pet_max_steps", default=-1, type=int,
                         help="If > 0: set total number of training steps to perform in PET. Override num_train_epochs.")
@@ -150,16 +150,16 @@ def main():
     parser.add_argument("--sc_max_seq_length", default=256, type=int,
                         help="The maximum total input sequence length after tokenization for sequence classification. "
                              "Sequences longer than this will be truncated, sequences shorter will be padded.")
-    parser.add_argument("--sc_per_gpu_train_batch_size", default=4, type=int,
+    parser.add_argument("--sc_per_gpu_train_batch_size", default=128, type=int,
                         help="Batch size per GPU/CPU for sequence classifier training.")
-    parser.add_argument("--sc_per_gpu_eval_batch_size", default=8, type=int,
+    parser.add_argument("--sc_per_gpu_eval_batch_size", default=256, type=int,
                         help="Batch size per GPU/CPU for sequence classifier evaluation.")
-    parser.add_argument("--sc_per_gpu_unlabeled_batch_size", default=4, type=int,
+    parser.add_argument("--sc_per_gpu_unlabeled_batch_size", default=128, type=int,
                         help="Batch size per GPU/CPU for unlabeled examples used for distillation.")
     parser.add_argument('--sc_gradient_accumulation_steps', type=int, default=1,
                         help="Number of updates steps to accumulate before performing a backward/update pass for "
                              "sequence classifier training.")
-    parser.add_argument("--sc_num_train_epochs", default=3, type=float,
+    parser.add_argument("--sc_num_train_epochs", default=2, type=float,
                         help="Total number of training epochs to perform for sequence classifier training.")
     parser.add_argument("--sc_max_steps", default=-1, type=int,
                         help="If > 0: set total number of training steps to perform for sequence classifier training. "
