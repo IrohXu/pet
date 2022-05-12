@@ -25,6 +25,7 @@ from typing import List, Dict, Callable
 import log
 from pet import task_helpers
 from pet.utils import InputExample
+from pet.eda import eda
 
 logger = log.get_logger('root')
 
@@ -204,10 +205,16 @@ class AgnewsProcessor(DataProcessor):
                 guid = "%s-%s" % (set_type, idx)
                 text_a = headline.replace('\\', ' ')
                 text_b = body.replace('\\', ' ')
-
                 example = InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label)
                 examples.append(example)
-
+                augment = False
+                if augment:
+                    text_a_eda = eda(text_a, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=2)
+                    text_b_eda = eda(text_b, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=2)
+                    for i in range(0, 3):
+                        # print("Example >> " + text_a_eda[i] + " >>>>>>> " + text_b_eda[i])
+                        example = InputExample(guid=guid, text_a=text_a_eda[i], text_b=text_b_eda[i], label=label)
+                        examples.append(example)
         return examples
 
 
