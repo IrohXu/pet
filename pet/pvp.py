@@ -273,10 +273,10 @@ class AgnewsPVP(PVP):
 
     def get_parts(self, example: InputExample) -> FilledPattern:
 
-        if random.random() < 0.0:
-            text_a = eda(example.text_a, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=5)[random.randint(0,4)]
+        if random.random() < 0.5:
+            text_a = eda(example.text_a, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=10)[random.randint(0,9)]
             text_a = self.shortenable(text_a)
-            text_b = eda(example.text_b, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=5)[random.randint(0,4)]
+            text_b = eda(example.text_b, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=10)[random.randint(0,9)]
             text_b = self.shortenable(text_b)
         else:
             text_a = self.shortenable(example.text_a)
@@ -317,10 +317,16 @@ class YahooPVP(PVP):
 
     def get_parts(self, example: InputExample) -> FilledPattern:
 
-        if random.random() < 0.5:
-            text_a = eda(example.text_a, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=10)[random.randint(0,9)]
+        if random.random() < 0.8:
+            try:
+                text_a = eda(example.text_a, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=10)[random.randint(0,9)]
+            except:
+                text_a = example.text_a
             text_a = self.shortenable(text_a)
-            text_b = eda(example.text_b, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=10)[random.randint(0,9)]
+            try:
+                text_b = eda(example.text_b, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=10)[random.randint(0,9)]
+            except:
+                text_b = example.text_b
             text_b = self.shortenable(text_b)
         else:
             text_a = self.shortenable(example.text_a)
