@@ -130,13 +130,13 @@ The final (distilled) model for each repetition `$I` can be found in `$OUTPUT_DI
 ```
 python cli.py \
 --method pet \
---pattern_ids 0 1 2 3 4 5 \
+--pattern_ids $PATTERN_IDS \
+--data_dir $DATA_DIR \
+--model_type $MODEL_TYPE \
+--model_name_or_path $MODEL_NAME_OR_PATH \
+--task_name $TASK \
+--output_dir $OUTPUT_DIR \
 --lm_training \
---data_dir /home/xc2057/pet/agnews/original \
---model_type roberta \
---model_name_or_path roberta-large \
---task_name agnews \
---output_dir /scratch/xc2057/nlp_final/agnews/T10_new_aug \
 --do_train \
 --do_eval \
 --train_examples 10 \
